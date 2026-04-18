@@ -1,0 +1,11 @@
+@import 'tailwindcss';
+
+:root {
+  --background: oklch(0.98 0.02 95);
+}
+
+@layer base {
+  body {
+    background: var(--background);
+  }
+}
