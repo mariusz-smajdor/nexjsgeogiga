@@ -1,20 +1,23 @@
-import { useEffect } from 'react';
+import { RouterProvider } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { useCountries } from './context/CountriesContext';
+import { router } from './router.tsx';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 1,
+    },
+  },
+});
 
 function App() {
-  const { countries, error } = useCountries();
-
-  useEffect(() => {
-    if (countries) {
-      console.log('Countries fetched successfully:', countries);
-    }
-    if (error) {
-      console.error('Error fetching countries:', error);
-    }
-  }, [countries, error]);
-
-  return <main>Hello GeoGiga</main>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  );
 }
 
 export default App;
