@@ -18,15 +18,15 @@ export function Globe() {
     let rafId: number;
 
     const globe = createGlobe(canvas, {
-      devicePixelRatio: 1,
       width: 600,
       height: 600,
+      devicePixelRatio: 2,
+      mapSamples: 16000,
       phi,
       theta,
+      mapBrightness: 1,
       dark: 0,
       diffuse: 0.2,
-      mapSamples: 16000,
-      mapBrightness: 1,
       baseColor: [1, 1, 1],
       glowColor: [0.8, 0.8, 0.8],
       markerColor: [0, 0, 0],
@@ -66,8 +66,8 @@ export function Globe() {
     function animate() {
       if (!isDragging) {
         phi += 0.002;
+        globe.update({ phi, theta });
       }
-      globe.update({ phi, theta });
       rafId = requestAnimationFrame(animate);
     }
     animate();
@@ -83,9 +83,11 @@ export function Globe() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className='w-full max-w-150 cursor-grab active:cursor-grabbing'
-    />
+    <div className='max-w-150'>
+      <canvas
+        ref={canvasRef}
+        className='w-full cursor-grab active:cursor-grabbing'
+      />
+    </div>
   );
 }
