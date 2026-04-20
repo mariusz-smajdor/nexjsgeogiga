@@ -1,7 +1,16 @@
+export type Continent =
+  | 'Africa'
+  | 'North America'
+  | 'South America'
+  | 'Asia'
+  | 'Europe'
+  | 'Oceania'
+  | 'Antarctica';
+
 export interface Country {
   unMember: boolean;
   capital: string[];
-  continent: string;
+  continent: Continent;
   borders: string[];
   area: number;
   population: number;
