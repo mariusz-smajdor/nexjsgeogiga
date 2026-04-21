@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import MainLayout from '@/layouts/main-layout';
 import AuthLayout from '@/layouts/auth-layout';
+import { SignInForm } from './pages/signin';
 
 export const router = createBrowserRouter([
   {
@@ -10,8 +11,8 @@ export const router = createBrowserRouter([
       {
         element: <AuthLayout />,
         children: [
-          { index: true, element: <p>Sign In</p> },
-          { path: 'signin', element: <p>Sign In</p> },
+          { index: true, element: <SignInForm /> },
+          { path: 'signin', element: <SignInForm /> },
           { path: 'signup', element: <p>SignUp</p> },
         ],
       },
