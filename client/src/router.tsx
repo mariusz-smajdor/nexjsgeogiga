@@ -1,16 +1,24 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import Layout from '@/layout.tsx';
-import HomePage from '@/pages/home/index.tsx';
+import MainLayout from '@/layouts/main-layout';
+import AuthLayout from '@/layouts/auth-layout';
 
 export const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Layout />,
-    children: [{ index: true, element: <HomePage /> }],
+    element: <MainLayout />,
+    children: [
+      {
+        element: <AuthLayout />,
+        children: [
+          { index: true, element: <p>Sign In</p> },
+          { path: 'signin', element: <p>Sign In</p> },
+          { path: 'signup', element: <p>SignUp</p> },
+        ],
+      },
+    ],
   },
   {
     path: '*',
-    element: <p>Page not found</p>, // Todo: Create a proper NotFoundPage component
+    element: <p>Page not found</p>,
   },
 ]);

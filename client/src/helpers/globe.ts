@@ -1,7 +1,7 @@
 import {
   filterCountriesByContinent,
   getRandomCountry,
-} from '@/components/utils/countries';
+} from '@/utils/countries';
 import type { Country } from '@/types/country';
 import type { Marker } from '@/types/globe';
 
