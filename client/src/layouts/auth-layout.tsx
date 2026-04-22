@@ -14,7 +14,7 @@ import {
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 import { countriesQuery } from '@/queries/countries';
-import { getMarkers } from '@/helpers/globe';
+import { getMarkers } from '@/utils/globe';
 import type { Country } from '@/types/country';
 import type { Marker } from '@/types/globe';
 import googleLogo from '@/assets/google-logo.svg';

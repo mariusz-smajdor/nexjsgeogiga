@@ -1,4 +1,4 @@
-import { fetchCountries } from '../services/api';
+import { fetchCountries } from '@/services/api';
 
 export const countriesQuery = {
   queryKey: ['countries'],
