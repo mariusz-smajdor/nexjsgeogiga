@@ -1,0 +1,8 @@
+{
+	"name": "@geogiga/schemas",
+	"main": "index.ts",
+	"types": "index.ts",
+	"dependencies": {
+		"zod": "^4.3.6"
+	}
+}
