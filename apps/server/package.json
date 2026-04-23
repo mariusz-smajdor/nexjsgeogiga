@@ -1,23 +1,23 @@
 {
-	"name": "server",
-	"version": "1.0.0",
-	"description": "",
-	"main": "src/main.ts",
-	"scripts": {
-		"start": "tsx src/main.ts",
-		"dev": "tsx watch src/main.ts"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
+	"name": "@geogiga/server",
+	"private": true,
 	"type": "module",
+	"scripts": {
+		"dev": "tsx watch src/main.ts",
+		"build": "tsc",
+		"start": "tsx src/main.ts",
+		"lint": "eslint ."
+	},
 	"dependencies": {
 		"fastify": "^5.8.5"
 	},
 	"devDependencies": {
+		"@eslint/js": "^9.39.4",
 		"@types/node": "^25.6.0",
-		"nodemon": "^3.1.14",
+		"eslint": "^9.39.4",
+		"globals": "^17.5.0",
 		"tsx": "^4.21.0",
-		"typescript": "^6.0.3"
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.59.0"
 	}
 }

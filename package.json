@@ -2,6 +2,6 @@
 	"name": "geogiga",
 	"private": true,
 	"scripts": {
-		"dev": "pnpm -r dev"
+		"dev": "pnpm -r --parallel dev"
 	}
 }

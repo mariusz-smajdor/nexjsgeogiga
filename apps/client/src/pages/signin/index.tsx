@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { signInSchema, type SignInValues } from '@geogiga/schemas';
+import { signInSchema, type SignInValues } from '@geogiga/schemas/auth';
 
 import { FormField } from '@/components/ui/form-field';
 import { Button } from '@/components/ui/button';
@@ -20,7 +20,7 @@ export function SignInForm() {
     toast({
       title: 'Sign In Form Submitted',
       description: (
-        <pre className='bg-muted mt-2 w-85 rounded-md p-4'>
+        <pre className='bg-muted mt-2 mb-1 w-85 rounded-md p-4'>
           <code className='text-foreground'>
             {JSON.stringify(values, null, 2)}
           </code>

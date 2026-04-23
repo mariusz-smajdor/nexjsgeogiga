@@ -21,7 +21,10 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@geogiga/schemas': path.resolve(__dirname, '../../packages/schemas'),
+      '@geogiga/schemas/auth': path.resolve(
+        __dirname,
+        '../../packages/schemas/auth',
+      ),
     },
   },
 });

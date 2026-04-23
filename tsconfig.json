@@ -1,7 +1,0 @@
-{
-	"compilerOptions": {
-		"paths": {
-			"@geogiga/schemas": ["./packages/schemas/index.ts"]
-		}
-	}
-}

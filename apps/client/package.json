@@ -1,12 +1,12 @@
 {
-  "name": "client",
-  "version": "1.0.0",
+  "name": "@geogiga/client",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.2.8",
