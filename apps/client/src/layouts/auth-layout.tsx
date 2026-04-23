@@ -59,7 +59,6 @@ function AuthLayout() {
           <Tabs
             value={activeTab}
             onValueChange={(value) => navigate(`/${value}`)}
-            className='w-full'
           >
             <TabsList className='grid w-full grid-cols-2'>
               <TabsTrigger value='signin' className='cursor-pointer'>
@@ -86,12 +85,7 @@ function AuthLayout() {
                 </span>
               </div>
             </div>
-            <Button
-              variant='outline'
-              type='button'
-              className='w-full'
-              onClick={() => {}}
-            >
+            <Button variant='outline' type='button'>
               <img src={googleLogo} alt='Google Logo' />
               Sign in with Google
             </Button>

@@ -39,12 +39,14 @@ export function SignInForm() {
         name='email'
         label='Email'
         type='email'
+        placeholder='example@email.com'
       />
       <FormField
         control={form.control}
         name='password'
         label='Password'
         type='password'
+        placeholder='********'
       />
       <Button type='submit'>Sign In</Button>
     </form>
