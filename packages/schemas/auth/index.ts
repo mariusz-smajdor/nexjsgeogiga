@@ -6,5 +6,14 @@ export const signInSchema = z.object({
 		.string()
 		.min(6, { message: 'Password must be at least 6 characters' }),
 });
-
 export type SignInValues = z.infer<typeof signInSchema>;
+
+export const signUpSchema = signInSchema
+	.extend({
+		confirmPassword: z.string(),
+	})
+	.refine((data) => data.password === data.confirmPassword, {
+		message: 'Passwords do not match',
+		path: ['confirmPassword'],
+	});
+export type SignUpValues = z.infer<typeof signUpSchema>;

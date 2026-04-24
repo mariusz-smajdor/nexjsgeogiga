@@ -1,24 +1,25 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { signInSchema, type SignInValues } from '@geogiga/schemas/auth';
+import { signUpSchema, type SignUpValues } from '@geogiga/schemas/auth';
 
 import { FormField } from '@/components/ui/form-field';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
 
-function SignInForm() {
-	const form = useForm<SignInValues>({
-		resolver: zodResolver(signInSchema),
+function SignUpForm() {
+	const form = useForm<SignUpValues>({
+		resolver: zodResolver(signUpSchema),
 		defaultValues: {
 			email: '',
 			password: '',
+			confirmPassword: '',
 		},
 	});
 	const { toast } = useToast();
 
-	function onSubmit(values: SignInValues) {
+	function onSubmit(values: SignUpValues) {
 		toast({
-			title: 'Sign In Form Submitted',
+			title: 'Sign Up Form Submitted',
 			description: (
 				<pre className='bg-muted mt-2 mb-1 w-85 rounded-md p-4'>
 					<code className='text-foreground'>
@@ -48,9 +49,16 @@ function SignInForm() {
 				type='password'
 				placeholder='********'
 			/>
-			<Button type='submit'>Sign In</Button>
+			<FormField
+				control={form.control}
+				name='confirmPassword'
+				label='Confirm Password'
+				type='password'
+				placeholder='********'
+			/>
+			<Button type='submit'>Sign Up</Button>
 		</form>
 	);
 }
 
-export default SignInForm;
+export default SignUpForm;
