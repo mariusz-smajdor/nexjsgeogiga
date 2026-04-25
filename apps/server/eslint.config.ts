@@ -1,15 +1,11 @@
-import js from '@eslint/js';
+import baseConfig from '@geogiga/eslint-config/base-config';
 import globals from 'globals';
-import tseslint from 'typescript-eslint';
-import { defineConfig, globalIgnores } from 'eslint/config';
+import { defineConfig } from 'eslint/config';
 
 export default defineConfig([
-	globalIgnores(['dist']),
+	...baseConfig,
 	{
-		files: ['**/*.{ts}'],
-		extends: [js.configs.recommended, tseslint.configs.recommended],
 		languageOptions: {
-			ecmaVersion: 2022,
 			globals: globals.node,
 		},
 	},

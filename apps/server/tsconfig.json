@@ -1,26 +1,17 @@
 {
+	"extends": "@geogiga/typescript-config/base-config",
 	"compilerOptions": {
 		"paths": {
-			"@/*": ["./src/*"],
-			"@geogiga/schemas/auth": ["../../packages/schemas/auth/"]
+			"@/*": ["./src/*"]
 		},
 		"target": "esnext",
 		"module": "nodenext",
 		"types": ["node"],
-		"skipLibCheck": true,
 		"sourceMap": true,
 		"declaration": true,
 		"declarationMap": true,
-		"strict": true,
 
 		/* Bundler mode */
-		"verbatimModuleSyntax": true,
-		"isolatedModules": true,
-		"moduleDetection": "force",
-
-		/* Linting */
-		"noUncheckedIndexedAccess": true,
-		"exactOptionalPropertyTypes": true,
-		"noUncheckedSideEffectImports": true
+		"isolatedModules": true
 	}
 }

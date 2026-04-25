@@ -2,7 +2,19 @@
 	"name": "@geogiga/schemas",
 	"private": true,
 	"type": "module",
+	"exports": {
+		"./*": "./src/*.ts"
+	},
+	"scripts": {
+		"lint": "eslint ."
+	},
 	"dependencies": {
 		"zod": "^4.3.6"
+	},
+	"devDependencies": {
+		"@geogiga/typescript-config": "workspace:*",
+		"@geogiga/eslint-config": "workspace:*",
+		"eslint": "^9.39.4",
+		"typescript": "^6.0.3"
 	}
 }

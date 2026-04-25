@@ -1,0 +1,8 @@
+{
+	"name": "@geogiga/typescript-config",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./base-config": "./tsconfig.json"
+	}
+}
