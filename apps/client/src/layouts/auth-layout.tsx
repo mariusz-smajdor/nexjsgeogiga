@@ -46,8 +46,8 @@ function AuthLayout() {
 	}
 
 	return (
-		<main className='relative container flex flex-1 flex-col items-center justify-evenly md:flex-row md:pt-0'>
-			<Card className='bg-background z-1 flex w-full max-w-md text-center sm:px-0 md:left-4 lg:static'>
+		<main className='relative container flex flex-1 flex-col items-center justify-center gap-14 py-14 md:flex-row md:justify-evenly md:gap-0 md:py-0 md:pt-0'>
+			<Card className='bg-background z-1 flex w-full max-w-md text-center md:absolute md:left-4 lg:static'>
 				<CardHeader>
 					<CardTitle className='text-2xl font-bold'>
 						Welcome to Geogiga
@@ -94,10 +94,7 @@ function AuthLayout() {
 				</CardContent>
 			</Card>
 			{countries && (
-				<Globe
-					markers={markers}
-					className='absolute z-0 md:right-4 lg:static'
-				/>
+				<Globe markers={markers} className='md:absolute md:right-0 lg:static' />
 			)}
 		</main>
 	);
