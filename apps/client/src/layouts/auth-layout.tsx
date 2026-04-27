@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Outlet, useNavigate, useMatch } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
+import { Loading } from '@/components/loading';
 import { Globe } from '@/components/ui/globe';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import {
@@ -41,11 +42,11 @@ function AuthLayout() {
 	}, [countries]);
 
 	if (isLoading) {
-		return <p>Loading...</p>;
+		return <Loading />;
 	}
 
 	return (
-		<main className='relative container flex min-h-[calc(100dvh-3.5rem)] flex-col items-center justify-evenly md:flex-row md:pt-0'>
+		<main className='relative container flex min-h-[calc(100dvh-var(--header-height))] flex-col items-center justify-evenly md:flex-row md:pt-0'>
 			<Card className='bg-background z-1 flex w-full max-w-md text-center sm:px-0 md:left-4 lg:static'>
 				<CardHeader>
 					<CardTitle className='text-2xl font-bold'>

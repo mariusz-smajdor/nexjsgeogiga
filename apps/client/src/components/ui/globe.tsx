@@ -8,6 +8,7 @@ import { cn } from '@/lib/utils';
 interface GlobeProps {
 	markers?: Marker[];
 	className?: string;
+	draggable?: boolean;
 }
 
 function MarkerCard({ marker }: { marker: Marker }) {
@@ -35,7 +36,7 @@ function MarkerCard({ marker }: { marker: Marker }) {
 	);
 }
 
-export function Globe({ markers, className }: GlobeProps) {
+export function Globe({ markers, className, draggable = true }: GlobeProps) {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const globeRef = useRef<Globe | null>(null);
 	const markersRef = useRef(markers);
@@ -132,13 +133,15 @@ export function Globe({ markers, className }: GlobeProps) {
 			isDragging = false;
 		}
 
-		canvas.addEventListener('pointerdown', onPointerDown);
-		window.addEventListener('pointermove', onPointerMove);
-		window.addEventListener('pointerup', onPointerUp);
+		if (draggable) {
+			canvas.addEventListener('pointerdown', onPointerDown);
+			window.addEventListener('pointermove', onPointerMove);
+			window.addEventListener('pointerup', onPointerUp);
+		}
 
 		function animate() {
 			if (!isDragging && !destroyed) {
-				phi += 0.002;
+				phi += draggable ? 0.002 : 0.02;
 				update();
 			}
 
@@ -155,9 +158,11 @@ export function Globe({ markers, className }: GlobeProps) {
 			globeRef.current?.destroy();
 			globeRef.current = null;
 
-			canvas.removeEventListener('pointerdown', onPointerDown);
-			window.removeEventListener('pointermove', onPointerMove);
-			window.removeEventListener('pointerup', onPointerUp);
+			if (draggable) {
+				canvas.removeEventListener('pointerdown', onPointerDown);
+				window.removeEventListener('pointermove', onPointerMove);
+				window.removeEventListener('pointerup', onPointerUp);
+			}
 		};
 	}, []);
 
@@ -170,7 +175,10 @@ export function Globe({ markers, className }: GlobeProps) {
 		>
 			<canvas
 				ref={canvasRef}
-				className='w-full cursor-grab active:cursor-grabbing'
+				className={cn(
+					'w-full',
+					draggable && 'cursor-grab active:cursor-grabbing',
+				)}
 			/>
 			{markers
 				? markers.map((marker) => (
