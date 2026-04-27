@@ -6,7 +6,7 @@ import type { Marker } from '@/types/globe';
 import { cn } from '@/lib/utils';
 
 interface GlobeProps {
-	markers: Marker[];
+	markers?: Marker[];
 	className?: string;
 }
 
@@ -43,7 +43,7 @@ export function Globe({ markers, className }: GlobeProps) {
 	useEffect(() => {
 		markersRef.current = markers;
 
-		if (!globeRef.current) return;
+		if (!globeRef.current || !markers) return;
 
 		globeRef.current.update({
 			markers: markers.map((m) => ({
@@ -82,11 +82,12 @@ export function Globe({ markers, className }: GlobeProps) {
 			glowColor: [0.8, 0.8, 0.8],
 			markerElevation: 0,
 			markerColor: [0, 0.5, 0.8],
-			markers: markers.map((m) => ({
-				id: m.id,
-				location: m.location,
-				size: 0.02,
-			})),
+			markers:
+				markers?.map((m) => ({
+					id: m.id,
+					location: m.location,
+					size: 0.02,
+				})) || [],
 		});
 		globeRef.current = globe;
 
@@ -96,11 +97,12 @@ export function Globe({ markers, className }: GlobeProps) {
 			globeRef.current.update({
 				phi,
 				theta,
-				markers: markersRef.current.map((m) => ({
-					id: m.id,
-					location: m.location,
-					size: 0.02,
-				})),
+				markers:
+					markersRef.current?.map((m) => ({
+						id: m.id,
+						location: m.location,
+						size: 0.02,
+					})) || [],
 			});
 		}
 
@@ -170,9 +172,11 @@ export function Globe({ markers, className }: GlobeProps) {
 				ref={canvasRef}
 				className='w-full cursor-grab active:cursor-grabbing'
 			/>
-			{markers.map((marker) => (
-				<MarkerCard key={marker.caption} marker={marker} />
-			))}
+			{markers
+				? markers.map((marker) => (
+						<MarkerCard key={marker.caption} marker={marker} />
+					))
+				: null}
 		</div>
 	);
 }
