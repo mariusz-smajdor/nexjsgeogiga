@@ -11,6 +11,9 @@ export type SignInValues = z.infer<typeof signInSchema>;
 export const signUpSchema = signInSchema
 	.extend({
 		confirmPassword: z.string(),
+		username: z
+			.string()
+			.min(3, { message: 'Username must be at least 3 characters' }),
 	})
 	.refine((data) => data.password === data.confirmPassword, {
 		message: 'Passwords do not match',

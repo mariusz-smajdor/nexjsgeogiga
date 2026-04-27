@@ -1,33 +1,32 @@
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signUpSchema, type SignUpValues } from '@geogiga/schemas/auth';
 
 import { FormField } from '@/components/ui/form-field';
 import { Button } from '@/components/ui/button';
-import { useToast } from '@/hooks/use-toast';
+import { useAuthMutation } from '@/hooks/use-auth-mutation';
 
 function SignUpForm() {
 	const form = useForm<SignUpValues>({
-		resolver: zodResolver(signUpSchema),
+		// resolver: zodResolver(signUpSchema),
 		defaultValues: {
 			email: '',
+			username: '',
 			password: '',
 			confirmPassword: '',
 		},
 	});
-	const { toast } = useToast();
+
+	const navigate = useNavigate();
+
+	const { mutate } = useAuthMutation({
+		setError: form.setError,
+		onSuccessNavigate: () => navigate('/signin'),
+	});
 
 	function onSubmit(values: SignUpValues) {
-		toast({
-			title: 'Sign Up Form Submitted',
-			description: (
-				<pre className='bg-muted mt-2 mb-1 w-85 rounded-md p-4'>
-					<code className='text-foreground'>
-						{JSON.stringify(values, null, 2)}
-					</code>
-				</pre>
-			),
-		});
+		mutate(values);
 	}
 
 	return (
@@ -41,6 +40,13 @@ function SignUpForm() {
 				label='Email'
 				type='email'
 				placeholder='example@email.com'
+			/>
+			<FormField
+				control={form.control}
+				name='username'
+				label='Username'
+				type='username'
+				placeholder='Your Username'
 			/>
 			<FormField
 				control={form.control}

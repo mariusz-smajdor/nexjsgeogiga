@@ -1,0 +1,8 @@
+{
+	"extends": "@geogiga/typescript-config/base-config",
+	"compilerOptions": {
+		"noEmit": true,
+		"module": "esnext"
+	},
+	"include": ["src"]
+}

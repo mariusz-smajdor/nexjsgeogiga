@@ -1,0 +1,17 @@
+{
+	"name": "@geogiga/types",
+	"private": true,
+	"type": "module",
+	"exports": {
+		"./*": "./src/*.ts"
+	},
+	"scripts": {
+		"lint": "eslint ."
+	},
+	"devDependencies": {
+		"@geogiga/typescript-config": "workspace:*",
+		"@geogiga/eslint-config": "workspace:*",
+		"eslint": "^9.39.4",
+		"typescript": "^6.0.3"
+	}
+}

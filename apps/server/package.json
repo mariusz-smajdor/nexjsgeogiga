@@ -9,13 +9,15 @@
 		"lint": "eslint ."
 	},
 	"dependencies": {
+		"@fastify/cors": "^11.2.0",
 		"@geogiga/schemas": "workspace:*",
-		"fastify": "^5.8.5"
+		"fastify": "^5.8.5",
+		"zod": "^4.3.6"
 	},
 	"devDependencies": {
-		"@geogiga/typescript-config": "workspace:*",
 		"@geogiga/eslint-config": "workspace:*",
 		"@geogiga/schemas": "workspace:*",
+		"@geogiga/typescript-config": "workspace:*",
 		"@types/node": "^25.6.0",
 		"eslint": "^9.39.4",
 		"globals": "^17.5.0",
