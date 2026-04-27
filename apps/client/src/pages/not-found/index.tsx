@@ -1,13 +1,13 @@
+import { Link } from 'react-router-dom';
+
 import { Globe } from '@/components/ui/globe';
+import { Button } from '@/components/ui/button';
 
 function NotFound() {
 	return (
-		<section className='container mt-14'>
-			<h1 className='text-center text-4xl'>
-				You’ve reached the edge of the world!
-			</h1>
+		<main className='container flex flex-1 flex-col items-center justify-center gap-6 text-center'>
 			<div
-				className='text-muted-foreground mt-7 hidden w-full items-center justify-center text-9xl sm:text-[16rem] [@media(min-width:320px)]:flex'
+				className='hidden w-full items-center justify-center text-9xl sm:text-[16rem] [@media(min-width:320px)]:flex'
 				role='img'
 				aria-label='404 page not found'
 			>
@@ -15,10 +15,19 @@ function NotFound() {
 				<Globe aria-hidden='true' />
 				<span aria-hidden='true'>4</span>
 			</div>
-			<div className='mt-7 text-center text-4xl [@media(min-width:320px)]:hidden'>
+			<div className='text-4xl font-bold [@media(min-width:320px)]:hidden'>
 				404 Page Not Found!
 			</div>
-		</section>
+			<h1 className='text-2xl'>
+				<span className='text-4xl leading-normal font-bold'>Oops!</span> <br />
+				<span className='text-muted-foreground'>
+					You’ve reached the edge of the world!
+				</span>
+			</h1>
+			<Button variant='link' className='text-lg' asChild>
+				<Link to='/'>Go back to the homepage</Link>
+			</Button>
+		</main>
 	);
 }
 

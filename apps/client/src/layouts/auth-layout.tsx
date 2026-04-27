@@ -46,7 +46,7 @@ function AuthLayout() {
 	}
 
 	return (
-		<main className='relative container flex min-h-[calc(100dvh-var(--header-height))] flex-col items-center justify-evenly md:flex-row md:pt-0'>
+		<main className='relative container flex flex-1 flex-col items-center justify-evenly md:flex-row md:pt-0'>
 			<Card className='bg-background z-1 flex w-full max-w-md text-center sm:px-0 md:left-4 lg:static'>
 				<CardHeader>
 					<CardTitle className='text-2xl font-bold'>

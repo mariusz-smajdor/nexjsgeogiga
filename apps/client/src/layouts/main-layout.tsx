@@ -6,8 +6,10 @@ import { Toaster } from '@/components/ui/toaster';
 function MainLayout() {
 	return (
 		<>
-			<Header />
-			<Outlet />
+			<div className='flex min-h-dvh flex-col'>
+				<Header />
+				<Outlet />
+			</div>
 			<Toaster />
 		</>
 	);
