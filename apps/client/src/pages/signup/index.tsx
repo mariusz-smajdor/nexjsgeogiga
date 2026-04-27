@@ -9,7 +9,7 @@ import { useAuthMutation } from '@/hooks/use-auth-mutation';
 
 function SignUpForm() {
 	const form = useForm<SignUpValues>({
-		// resolver: zodResolver(signUpSchema),
+		resolver: zodResolver(signUpSchema),
 		defaultValues: {
 			email: '',
 			username: '',
