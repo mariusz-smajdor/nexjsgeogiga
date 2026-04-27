@@ -29,5 +29,5 @@ export interface Country {
 		png: string;
 		svg: string;
 	};
-	latlng: [number, number][];
+	latlng: [[number, number], ...[number, number][]]; // trust my api that there will always be at least one latlng pair
 }

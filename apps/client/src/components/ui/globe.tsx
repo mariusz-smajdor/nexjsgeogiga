@@ -1,12 +1,38 @@
 import { useEffect, useRef } from 'react';
 import createGlobe, { type Globe } from 'cobe';
 
+import { Card, CardContent } from '@/components/ui/card';
 import type { Marker } from '@/types/globe';
 import { cn } from '@/lib/utils';
 
 interface GlobeProps {
 	markers: Marker[];
 	className?: string;
+}
+
+function MarkerCard({ marker }: { marker: Marker }) {
+	return (
+		<Card
+			className='translate pointer-events-none absolute mb-2 -translate-x-1/2 translate-y-0 gap-2 px-1 py-2 transition-[opacity,filter] duration-300'
+			style={{
+				left: 'anchor(center)',
+				bottom: 'anchor(top)',
+				transform: `rotate(${marker.rotate}deg)`,
+				filter: `blur(calc((1 - var(--cobe-visible-${marker.id}, 0)) * 8px))`,
+				positionAnchor: `--cobe-${marker.id}`,
+				opacity: `var(--cobe-visible-${marker.id}, 0)`,
+			}}
+		>
+			<img
+				src={marker.image}
+				alt={marker.caption}
+				className='h-auto w-16 object-contain shadow-sm'
+			/>
+			<CardContent className='w-16 px-0 text-center text-[10px] leading-[1.2] font-medium wrap-break-word'>
+				{marker.caption}
+			</CardContent>
+		</Card>
+	);
 }
 
 export function Globe({ markers, className }: GlobeProps) {
@@ -145,27 +171,7 @@ export function Globe({ markers, className }: GlobeProps) {
 				className='w-full cursor-grab active:cursor-grabbing'
 			/>
 			{markers.map((marker) => (
-				<div
-					key={marker.caption}
-					className='translate bg-background shadow-muted-foreground pointer-events-none absolute mb-2 -translate-x-1/2 translate-y-0 rounded p-1.5 pb-3 shadow-2xl transition-[opacity,filter] duration-300'
-					style={{
-						left: 'anchor(center)',
-						bottom: 'anchor(top)',
-						transform: `rotate(${marker.rotate}deg)`,
-						filter: `blur(calc((1 - var(--cobe-visible-${marker.id}, 0)) * 8px))`,
-						positionAnchor: `--cobe-${marker.id}`,
-						opacity: `var(--cobe-visible-${marker.id}, 0)`,
-					}}
-				>
-					<img
-						src={marker.image}
-						alt={marker.caption}
-						className='h-auto w-16 object-contain'
-					/>
-					<p className='mt-2 w-16 text-center text-[10px] leading-[1.2] font-medium wrap-break-word'>
-						{marker.caption}
-					</p>
-				</div>
+				<MarkerCard key={marker.caption} marker={marker} />
 			))}
 		</div>
 	);
