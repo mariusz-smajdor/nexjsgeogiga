@@ -7,11 +7,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export const getCountries = async (_: FastifyRequest, reply: FastifyReply) => {
-	console.log(__filename);
-	console.log(__dirname);
 	try {
 		const data = await fs.readFile(
-			path.join(__dirname, '..', '..', '..', 'countries.json'),
+			path.join(__dirname, '..', '..', 'countries.json'),
 			'utf8',
 		);
 		return reply.send(JSON.parse(data));

@@ -2,6 +2,8 @@ import { z } from 'zod';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import { signUpSchema } from '@geogiga/schemas/auth';
 
+import { registerUser } from '@/services/auth.service.js';
+
 export const signUp = async (request: FastifyRequest, reply: FastifyReply) => {
 	try {
 		const result = signUpSchema.safeParse(request.body);
@@ -14,17 +16,22 @@ export const signUp = async (request: FastifyRequest, reply: FastifyReply) => {
 			});
 		}
 
+		await registerUser(result.data);
+
 		return reply.status(201).send({
-			title: 'Account Successfully Created',
-			message: 'You can now sign in with your new account.',
+			title: 'Account Created',
+			message: 'You can now sign in.',
 		});
 	} catch (err) {
+		if (err instanceof Error && err.message === 'USER_ALREADY_EXISTS') {
+			return reply.status(409).send({
+				message: 'Email or username already taken.',
+			});
+		}
+
 		return reply.status(500).send({
 			title: 'Internal Server Error',
-			message:
-				err instanceof Error
-					? err.message
-					: 'Something went wrong, please try again later.',
+			message: 'Something went wrong, please try again later.',
 		});
 	}
 };
